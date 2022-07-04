@@ -71,8 +71,7 @@ class Board:
         """Clear the board and reset count statistics."""
         self._grid = [[' '] * 3 for i in range(3)]
         self._turn = 0
-        self._filled_squares = 0
-        
+        self._filled_squares = 0  
 
     def display_board(self) -> None:
         """Display the board with its values."""
@@ -145,8 +144,7 @@ class TicTacToe:
             i += 1
 
         return cast(Players, tuple(players))
-    
-                
+                 
     def _get_player_move(self) -> Position:
         """Get a valid move from a player."""
         while True:
