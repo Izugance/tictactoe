@@ -39,7 +39,8 @@ class Board:
             {(0, 1), (1, 1), (2, 1)},
             {(0, 2), (1, 2), (2, 2)},
             {(0, 0), (1, 1), (2, 2)},   # Diagonals.
-            {(2, 0), (1, 1), (0, 2)}) 
+            {(2, 0), (1, 1), (0, 2)}
+            ) 
 
     def __init__(self, players: Players) -> None:
         """Initialize a Tic-Tac-Toe board."""
@@ -55,7 +56,6 @@ class Board:
         Return True if there's a win, else False.
         """
         relevant_axes = (axis for axis in Board._AXES if pos in axis)
-        
         for axis in relevant_axes:
             vals = list(filter(lambda x: self._grid[x[0]][x[1]] != ' ', axis))
             if len(vals) < 3:
@@ -88,13 +88,13 @@ class Board:
         row, col = pos
         self._grid[row][col] = self._players[self._turn]
         self.display_board()
+        self._filled_squares += 1
         # Check for wins only if the board has been filled
         # to a certain level.
-        self._filled_squares += 1
         if self._filled_squares >= 5:
             win = self._check_win(pos)
             if win:
-                # The player with the recent turn wins.
+                # The player with the most recent turn wins.
                 raise Win(f"Player {self._players[self._turn]!r} wins!")
         if self._filled_squares == 9:
             raise GameOver('Game Over!')
@@ -106,7 +106,8 @@ class TicTacToe:
     
     ALLOWED_POSITIONS = {'1': (0, 0), '2': (0, 1), '3': (0, 2),
                          '4': (1, 0), '5': (1, 1), '6': (1, 2),
-                         '7': (2, 0), '8': (2, 1), '9': (2, 2)}
+                         '7': (2, 0), '8': (2, 1), '9': (2, 2)
+                        }
 
     def __init__(self) -> None:
         """Create a TicTacToe instance."""
@@ -186,7 +187,8 @@ class TicTacToe:
             "Enter a position as above, after setup to make a move.\n"
             "If there's no possibility of winning with a board's configuration, "
             "enter 'ff' to forfeit the round.\n"
-            "Enter 'quit' at any point in the game to exit.\n")
+            "Enter 'quit' at any point in the game to exit.\n"
+        )
         print(layout)
         
     def main(self):
