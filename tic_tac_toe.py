@@ -199,7 +199,7 @@ class TicTacToe:
         )
         print(layout)
 
-    def main(self):
+    def main(self) -> None:
         """TicTacToe's main game loop."""
         self.display_intro()
         while True:
